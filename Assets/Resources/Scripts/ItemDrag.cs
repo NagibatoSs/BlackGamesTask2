@@ -1,41 +1,52 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
-
-public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+namespace SortCubes
 {
-    private Rigidbody _rigidbody;
-    private bool _isDraggable=false;
-
-    void Start()
+    public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+        private Rigidbody _rigidbody;
+        [HideInInspector] public bool IsDraggable {get; private set;}
+        [SerializeField] ItemType _type;
+        public ItemType Type { get =>_type;}
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        _rigidbody.isKinematic = true;
-        _isDraggable = true;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (_isDraggable==false) return;
-        _rigidbody.isKinematic = false;
-        _isDraggable = false;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (_isDraggable==false) return;
-        if (!eventData.pointerCurrentRaycast.isValid)
+        void Start()
         {
-            _rigidbody.isKinematic = false;
-            _isDraggable = false;
+            _rigidbody = GetComponent<Rigidbody>();
         }
-        var position = eventData.pointerCurrentRaycast.worldPosition;
-        var delta = position - transform.position;
-        delta.z = 0;
-        transform.position+=delta;
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            _rigidbody.isKinematic = true;
+            IsDraggable = true;
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            if (IsDraggable==false) return;
+                _rigidbody.isKinematic = false;
+            IsDraggable = false;
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (IsDraggable==false) return;
+            if (!eventData.pointerCurrentRaycast.isValid)
+            {
+                _rigidbody.isKinematic = false;
+                IsDraggable = false;
+            }
+            var position = eventData.pointerCurrentRaycast.worldPosition;
+            var delta = position - transform.position;
+            delta.z = 0;
+            transform.position+=delta;
+            if (transform.position.y<0.5) 
+                transform.position=new Vector3(transform.position.x,0.5f,transform.position.z);
+            // if (transform.position.x<-2) 
+            //     transform.position=new Vector3(-2,transform.position.y,transform.position.z);
+            // if (transform.position.x>2) 
+            //     transform.position=new Vector3(2,transform.position.y,transform.position.z);
+        }
     }
 }
+

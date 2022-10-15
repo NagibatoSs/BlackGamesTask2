@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2858660346052464439, guid: c371ef56e00011c4b94aa7b6016e3fa2, type: 3}
+      propertyPath: _type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5195015674018082186, guid: c371ef56e00011c4b94aa7b6016e3fa2, type: 3}
       propertyPath: m_Name
       value: Red Cube
