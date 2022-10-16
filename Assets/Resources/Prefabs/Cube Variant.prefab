@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7894536379110198150, guid: 9f2016566057e7449895ea53e840a07b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 1a777e4cc5dbc0c46bb1831e596ac2b7, type: 2}
     - target: {fileID: 8671552415992800819, guid: 9f2016566057e7449895ea53e840a07b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -90,3 +94,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe152da8e3d7357469e0ead181b03522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0

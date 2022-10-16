@@ -6,7 +6,7 @@ namespace SortCubes
     public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
         private Rigidbody _rigidbody;
-        [HideInInspector] public bool IsDraggable {get; private set;}
+        public bool IsDraggable { get; set;}
         [SerializeField] ItemType _type;
         public ItemType Type { get =>_type;}
 

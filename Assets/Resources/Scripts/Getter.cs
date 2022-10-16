@@ -20,7 +20,6 @@ namespace SortCubes
         private void OnTriggerStay(Collider other) 
         {
             var item = other.attachedRigidbody.GetComponent<ItemDrag>();
-            
             if (item!=null && item.IsDraggable==true)
             {
                 _item = item;
@@ -36,7 +35,6 @@ namespace SortCubes
 
         private void OnTriggerExit(Collider other)
         {
-            Debug.Log("exit");
             var item = other.attachedRigidbody.GetComponent<ItemDrag>();
             if (item==null) return;
             if (_item == item)
@@ -52,6 +50,12 @@ namespace SortCubes
             if (_item.Type==_type)
             {
                 Destroy(_item.gameObject);
+            }
+            else
+            {
+                //_item.IsDraggable=false;
+
+                // _item.GetComponent<Rigidbody>().AddForce(Vector3.right*5);
             }
         } 
     }
