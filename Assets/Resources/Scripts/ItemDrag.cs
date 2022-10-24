@@ -35,17 +35,16 @@ namespace SortCubes
             {
                 _rigidbody.isKinematic = false;
                 IsDraggable = false;
+                return;
             }
             var position = eventData.pointerCurrentRaycast.worldPosition;
-            var delta = position - transform.position;
+            var delta = position - _rigidbody.position;
             delta.z = 0;
+            position.z=_rigidbody.position.z;
             transform.position+=delta;
             if (transform.position.y<0.5) 
                 transform.position=new Vector3(transform.position.x,0.5f,transform.position.z);
-            // if (transform.position.x<-2) 
-            //     transform.position=new Vector3(-2,transform.position.y,transform.position.z);
-            // if (transform.position.x>2) 
-            //     transform.position=new Vector3(2,transform.position.y,transform.position.z);
+            //_rigidbody.MovePosition(position);
         }
     }
 }
