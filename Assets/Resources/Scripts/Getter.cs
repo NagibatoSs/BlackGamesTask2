@@ -1,13 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SortCubes
 {
     public class Getter : MonoBehaviour
     {
         [SerializeField] public ItemType _type;
+        [SerializeField] private float _reboundForceToRight = 100f;
+        private int _targetCount = 1;
         private ItemDrag _item;
+        private int _currentCount;
+
+        public UnityEvent<Getter> OnCountChanged;
+
+        public void SetCount(int value)
+        {
+            _targetCount = value;
+        }
         
         private void OnTriggerEnter(Collider other) 
         {
@@ -50,12 +61,13 @@ namespace SortCubes
             if (_item.Type==_type)
             {
                 Destroy(_item.gameObject);
+                _currentCount++;
+                OnCountChanged.Invoke(this);
             }
             else
             {
-                //_item.IsDraggable=false;
-
-                // _item.GetComponent<Rigidbody>().AddForce(Vector3.right*5);
+                _item.IsDraggable=false;
+                _item.GetComponent<Rigidbody>().AddForce(Vector3.right*_reboundForceToRight);
             }
         } 
     }

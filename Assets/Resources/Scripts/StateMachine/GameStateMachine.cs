@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace SortCubes
 {
-   // [CreateAssetMenu(fileName = "GameStateMachine", menuName = "BlackGamesTask2/GameStateMachine", order = 0)]
+    [CreateAssetMenu(fileName = "GameStateMachine", menuName = "Create GameStateMachine", order = 0)]
 
     public class GameStateMachine : ScriptableObject 
     {
@@ -15,6 +15,8 @@ namespace SortCubes
             get { return _gameState; }
             set 
             {
+                if (_gameState == value)
+                    return;
                 _gameState=value;
                 OnChangeState.Invoke();
             }
