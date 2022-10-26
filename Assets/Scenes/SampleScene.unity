@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
-  _reboundForce: 100
+  _reboundForceToRight: 100
   OnCountChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1765,7 +1765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 1
-  _reboundForce: -100
+  _reboundForceToRight: -100
   OnCountChanged:
     m_PersistentCalls:
       m_Calls: []
